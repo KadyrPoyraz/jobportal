@@ -15,14 +15,14 @@ type Server struct {
 	server       *http.Server
 }
 
-type ServerOption func(*Server)
+type Option func(*Server)
 
 func NewServer(port int) *Server {
 	s := &Server{
 		port:        port,
 		middlewares: []Middleware{},
 	}
-	s.Router = NewRouter(s)
+	s.Router = NewRouter()
 	return s
 }
 
@@ -51,12 +51,12 @@ func (s *Server) GetRouter() *Router {
 
 type ErrorHandler func(w http.ResponseWriter, r *http.Request, err error)
 
-func WithErrorHandler(handler ErrorHandler) ServerOption {
+func WithErrorHandler(handler ErrorHandler) Option {
 	return func(s *Server) {
 		s.errorHandler = handler
 	}
 }
 
-func DefaultErrorHandler(w http.ResponseWriter, r *http.Request, err error) {
+func DefaultErrorHandler(w http.ResponseWriter, _ *http.Request, err error) {
 	http.Error(w, err.Error(), http.StatusInternalServerError)
 }
