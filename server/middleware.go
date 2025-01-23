@@ -28,7 +28,8 @@ func LoggingMiddleware(next Handler) Handler {
 	return func(w http.ResponseWriter, r *http.Request) {
 		println("Request:", r.Method, r.URL.Path)
 		next(w, r)
-	} }
+	}
+}
 
 func AuthMiddleware(next Handler) Handler {
 	return func(w http.ResponseWriter, r *http.Request) {
