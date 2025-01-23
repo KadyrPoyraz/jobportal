@@ -1,0 +1,2 @@
+CREATE DATABASE jobportal_db;
+GRANT ALL PRIVILEGES ON DATABASE jobportal_db TO admin;
