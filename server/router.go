@@ -14,7 +14,7 @@ type Router struct {
 	notFoundHandler Handler
 }
 
-func NewRouter(server *Server) *Router {
+func NewRouter() *Router {
 	return &Router{
 		routes:          make(map[string]map[string]Handler),
 		notFoundHandler: defaultNotFoundHandler,
@@ -95,6 +95,6 @@ func isWildcardMatch(routePath, requestPath string) bool {
 	return true
 }
 
-func defaultNotFoundHandler(w http.ResponseWriter, r *http.Request) {
+func defaultNotFoundHandler(w http.ResponseWriter, _ *http.Request) {
 	http.Error(w, "404 page not found", http.StatusNotFound)
 }

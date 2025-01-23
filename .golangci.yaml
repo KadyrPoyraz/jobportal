@@ -1,0 +1,29 @@
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - errcheck
+    - ineffassign
+    - unused
+    - typecheck
+    - gosimple
+    - revive
+    - gosec
+    - godot
+    - godox
+    - cyclop
+    - nestif
+    - gocyclo
+    - dupl
+    - testpackage
+    - paralleltest
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  cyclop:
+    max-complexity: 10
+  revive:
+    config: .revive.toml
+  gosec:
+    severity: medium
